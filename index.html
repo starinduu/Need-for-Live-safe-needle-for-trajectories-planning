@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Need for Live – Needle Path for Liver</title>
+<link rel="stylesheet" href="need4live.css"></head><body>
+<div class="app">
+<header>
+<div class="logo"><svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11h7l3-8 5 15 4-10 2 3h11"/></svg><span>Need for <b>Live</b></span></div>
+<div class="pill">
+<button class="p" id="run">Cari jalur</button>
+<button id="reset">Reset titik</button>
+<button id="demo">Phantom demo</button>
+<label><input type="file" id="file" accept="image/*" style="display:none"><button onclick="file.click()">Unggah label mask</button></label>
+<button id="defcls">Reset preset</button>
+</div>
+<div class="who"><b>Needle path for Liver</b><span>Perencanaan jalur jarum tumor hati (A*)</span></div>
+</header>
+<main>
+<section class="col">
+<div class="card">
+<h1>Halo, Dokter!</h1>
+<p class="s">Klik 1 = titik masuk di kulit, klik 2 = target. Jalur dihitung dari gambar label segmentasi 2D.</p>
+<canvas id="cv"></canvas>
+<p class="s" id="msg">Klik titik masuk.</p>
+<div class="leg"><span><i style="background:#00e5ff"></i><b>Cyan</b> = needle masuk</span><span><i style="background:#ff00cc"></i><b>Magenta</b> = needle target</span><span><i style="background:#ff2d2d;border-radius:2px;height:4px"></i>jalur A*</span><span><i style="background:rgba(255,220,0,.6)"></i>area dijelajahi</span></div>
+</div>
+</section>
+<section class="col">
+<div class="card"><h2>Hasil</h2><div id="out"><p class="s">Belum ada hasil.</p></div></div>
+<div class="card"><h2>Kelas jaringan</h2>
+<p class="s">Preset warna tetap: piksel otomatis dicocokkan ke warna terdekat. Cost dan forbid masih bisa diubah manual; nilai preset perlu dasar literatur.</p>
+<div class="wrap"><table id="cls"></table></div></div>
+<div class="card"><h2>Parameter pencarian</h2>
+<p class="s">Heuristik: h(n) = w × cost_min × jarak Euclidean ke target.</p>
+<div class="par"><span>w: <input type="number" id="w" value="1" step="0.1" min="0"> <span class="s">(0 = Dijkstra/UCS)</span></span>
+<label><input type="checkbox" id="diag" checked> 8 arah (diagonal)</label></div></div>
+</section>
+</main></div>
+<script src="need4live.js"></script></body></html>
